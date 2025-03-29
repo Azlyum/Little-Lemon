@@ -60,7 +60,9 @@ const HomePage = () => {
   return (
     <main className="homepage">
       <section className="hero">
-        <h1>Little Lemon</h1>
+        <h1>
+          <span className="logo-lemon">🍋</span>Little Lemon
+        </h1>
         <p className="tagline">
           A family-owned Mediterranean restaurant blending time-honored recipes
           with a modern flair.

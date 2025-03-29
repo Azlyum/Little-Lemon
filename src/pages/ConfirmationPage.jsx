@@ -3,7 +3,12 @@ import { useLocation, Link } from "react-router-dom";
 
 const ConfirmationPage = () => {
   const { state } = useLocation();
-  const { name, date, time, guests, contactMethod, contactInfo } = state || {};
+  const name = state?.name || "Guest";
+  const guests = state?.guests || "?";
+  const date = state?.date || "[date]";
+  const time = state?.time || "[time]";
+  const contactMethod = state?.contactMethod || "your preferred method";
+  const contactInfo = state?.contactInfo || "[contact info]";
 
   return (
     <section className="confirmation-message" role="status">

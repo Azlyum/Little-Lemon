@@ -1,61 +1,56 @@
+import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import "../App.css";
 
 const ContactDetailsPage = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
 
-  const method = state?.method || "email";
   const [contactInfo, setContactInfo] = useState("");
-  const [isValid, setIsValid] = useState(false);
+  const [error, setError] = useState("");
 
-  useEffect(() => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^\d{10,}$/;
-    if (method === "email") {
-      setIsValid(emailRegex.test(contactInfo));
-    } else {
-      setIsValid(phoneRegex.test(contactInfo));
-    }
-  }, [contactInfo, method]);
+  const method = state?.contactMethod || "email";
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!isValid) return;
+    if (method === "email" && !/\S+@\S+\.\S+/.test(contactInfo)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
 
-    alert("✅ Contact info submitted!");
+    if (method === "text" && !/^[0-9+\s()-]{7,}$/.test(contactInfo)) {
+      setError("Please enter a valid phone number.");
+      return;
+    }
 
     navigate("/confirmation", {
       state: {
         ...state,
-        contactInfo,
+        contactInfo: contactInfo,
       },
     });
   };
 
   return (
     <section className="reservation-page">
-      <h2>Enter Your {method === "email" ? "Email" : "Phone Number"}</h2>
-      <form onSubmit={handleSubmit}>
+      <h2 className="reservation-title">Contact Details</h2>
+      <form onSubmit={handleSubmit} className="reservation-form">
         <label htmlFor="contactInput">
           {method === "email" ? "Email Address:" : "Phone Number:"}
         </label>
         <input
           type={method === "email" ? "email" : "tel"}
           id="contactInput"
+          name="contactInput"
+          placeholder={method === "email" ? "you@example.com" : "07123456789"}
           value={contactInfo}
           onChange={(e) => setContactInfo(e.target.value)}
-          required
-          placeholder={
-            method === "email" ? "you@example.com" : "e.g. 07123456789"
-          }
         />
-        {!isValid && contactInfo && (
-          <p className="error">Please enter a valid {method}.</p>
-        )}
-        <button type="submit" className="reserve-btn" disabled={!isValid}>
-          Submit
+        {error && <span className="error">{error}</span>}
+
+        <button type="submit" className="reserve-btn">
+          Confirm
         </button>
       </form>
     </section>
