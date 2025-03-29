@@ -1,5 +1,58 @@
 import React from "react";
 import "../App.css";
+import Menu from "../components/Menu";
+
+const dishes = [
+  {
+    id: 1,
+    title: "Fresh Greek Salad",
+    image: "greek-salad.jpg",
+    summary:
+      "A refreshing mix of cucumbers, tomatoes, olives, and feta cheese tossed in a light olive oil dressing.",
+    ingredients: [
+      "Cucumbers",
+      "Cherry tomatoes",
+      "Red onion",
+      "Kalamata olives",
+      "Feta cheese",
+      "Olive oil",
+      "Oregano",
+    ],
+  },
+  {
+    id: 2,
+    title: "Grilled Lamb Kofta",
+    image: "Lamb-kofta.jpg",
+    summary:
+      "Juicy spiced lamb skewers grilled to perfection and served with warm flatbread and tzatziki sauce.",
+    ingredients: [
+      "Ground lamb",
+      "Garlic",
+      "Cumin",
+      "Coriander",
+      "Cilantro",
+      "Flatbread",
+      "Tzatziki",
+    ],
+  },
+  {
+    id: 3,
+    title: "Classic Baklava",
+    image: "Baklava.jpg",
+    summary:
+      "Crispy layers of filo pastry filled with chopped nuts and sweetened with fragrant honey syrup.",
+    ingredients: [
+      "Filo dough",
+      "Walnuts",
+      "Pistachios",
+      "Butter",
+      "Cinnamon",
+      "Honey",
+      "Sugar",
+      "Lemon juice",
+    ],
+  },
+];
 
 const HomePage = () => {
   return (
@@ -25,28 +78,25 @@ const HomePage = () => {
       <section className="food-gallery">
         <h2>Featured Dishes</h2>
         <div className="gallery">
-          <figure>
-            <img
-              src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
-              alt="Fresh Greek Salad"
-            />
-            <figcaption>Fresh Greek Salad</figcaption>
-          </figure>
-          <figure>
-            <img
-              src="https://images.unsplash.com/photo-1601315481191-7c1e1a4d63bb"
-              alt="Grilled Lamb Kofta"
-            />
-            <figcaption>Grilled Lamb Kofta</figcaption>
-          </figure>
-          <figure>
-            <img
-              src="https://images.unsplash.com/photo-1589307004391-34c3efdd8e7d"
-              alt="Baklava Dessert"
-            />
-            <figcaption>Baklava Dessert</figcaption>
-          </figure>
+          {dishes.map((dish) => (
+            <figure key={dish.id}>
+              <img src={dish.image} alt={dish.title} />
+              <figcaption>
+                <strong>{dish.title}</strong>
+              </figcaption>
+              <p className="dish-summary">{dish.summary}</p>
+              <div className="dish-ingredients">
+                <strong>Ingredients:</strong>
+                <ul className="ingredient-list">
+                  {dish.ingredients.map((ingredient, index) => (
+                    <li key={index}>{ingredient}</li>
+                  ))}
+                </ul>
+              </div>
+            </figure>
+          ))}
         </div>
+        <Menu />
       </section>
     </main>
   );

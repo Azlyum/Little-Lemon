@@ -1,16 +1,30 @@
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import ReservationPage from "./pages/ReservationPage";
+import SuccessPage from "./pages/SuccessPage";
+import ErrorPage from "./pages/ErrorPage";
 import "./App.css";
-import BookingReservation from "./components/BookingForm";
-import Home from "./components/Home";
 
 function App() {
   return (
-    <div className="App-header">
-      <Home
-        name="Little Lemon"
-        description="A family-owned Mediterranean restaurant blending time-honored recipes with a modern flair. We serve authentic flavors made with love, in a warm and welcoming atmosphere."
-      />
-      <BookingReservation formInput />
-    </div>
+    <Router>
+      <nav className="navbar">
+        <Link to="/" className="nav-link">
+          Home
+        </Link>
+        <Link to="/reserve" className="nav-link">
+          Reserve a Table
+        </Link>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/reserve" element={<ReservationPage />} />
+        <Route path="/success" element={<SuccessPage />} />
+        <Route path="/error" element={<ErrorPage />} />
+      </Routes>
+    </Router>
   );
 }
 
