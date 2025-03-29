@@ -1,11 +1,12 @@
-/* === Reset & Base === */
 body {
   margin: 0;
   font-family: "Helvetica Neue", sans-serif;
   background-color: #fafafa;
 }
+html {
+  scroll-behavior: smooth;
+}
 
-/* === Navbar === */
 .navbar {
   background-color: #495e57;
   padding: 15px;
@@ -26,7 +27,6 @@ body {
   text-decoration: underline;
 }
 
-/* === Hero Section === */
 .hero {
   text-align: center;
   background-color: #495e57;
@@ -40,7 +40,6 @@ body {
   margin: 0 auto;
 }
 
-/* === Bio Section === */
 .bio {
   max-width: 700px;
   margin: 30px auto;
@@ -48,7 +47,6 @@ body {
   text-align: center;
 }
 
-/* === Food Gallery (HomePage) === */
 .food-gallery {
   padding: 20px;
 }
@@ -92,7 +90,6 @@ body {
   color: #495e57;
 }
 
-/* === Reservation Form === */
 .reservation-page {
   max-width: 600px;
   margin: 40px auto;
@@ -148,7 +145,6 @@ body {
   font-size: 0.9em;
 }
 
-/* === Confirmation & Error Pages === */
 .confirmation-message {
   text-align: center;
   padding: 40px 20px;
@@ -164,7 +160,6 @@ body {
   color: #721c24;
 }
 
-/* === Responsive Styling === */
 @media (max-width: 768px) {
   .gallery {
     flex-direction: column;
@@ -257,4 +252,105 @@ body {
   font-weight: 500;
   font-size: 1em;
   color: #495e57;
+}
+
+.reserve-cta {
+  text-align: center;
+  margin: 50px 0 30px;
+}
+
+.reserve-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 12px 24px;
+  background-color: #f4ce14;
+  color: #333;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.reserve-link:hover {
+  background-color: #e0bb0f;
+}
+
+.contact-options {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.radio-option {
+  background-color: #eee;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.radio-option input {
+  margin-right: 8px;
+}
+
+.radio-option.selected {
+  background-color: #f4ce14;
+  font-weight: bold;
+}
+
+.testimonial-section {
+  max-width: 600px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.testimonial-card {
+  background-color: var(--card-bg);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.quote {
+  font-style: italic;
+  color: var(--text);
+  font-size: 1.1em;
+}
+
+.guest {
+  font-weight: bold;
+  margin-top: 10px;
+  color: var(--accent);
+}
+
+:root {
+  --bg: #fafafa;
+  --text: #222;
+  --accent: #495e57;
+  --card-bg: #fff;
+}
+
+body.dark {
+  --bg: #1c1c1c;
+  --text: #f0f0f0;
+  --accent: #f4ce14;
+  --card-bg: #2c2c2c;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-toggle {
+  background: none;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
 }

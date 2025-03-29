@@ -1,6 +1,8 @@
 import React from "react";
 import "../App.css";
 import Menu from "../components/Menu";
+import Testimonials from "../components/Testimonials";
+import { Link } from "react-router-dom";
 
 const dishes = [
   {
@@ -97,6 +99,13 @@ const HomePage = () => {
           ))}
         </div>
         <Menu />
+        <Testimonials />
+        <section className="reserve-cta">
+          <h2>Ready to dine with us?</h2>
+          <Link to="/reserve" className="reserve-link">
+            Reserve a Table
+          </Link>
+        </section>
       </section>
     </main>
   );

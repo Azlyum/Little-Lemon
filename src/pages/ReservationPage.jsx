@@ -1,16 +1,30 @@
-import React, { useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "../App.css";
 
 const ReservationPage = () => {
+  const formRef = useRef();
+
+  useEffect(() => {
+    if (formRef.current) {
+      formRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
   const navigate = useNavigate();
+
+  const today = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
+  const now = new Date().toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 
   const [formData, setFormData] = useState({
     name: "",
-    date: "",
-    time: "",
-    guests: "",
+    date: today,
+    time: now,
+    guests: "1",
+    contactMethod: "email", // default
   });
 
   const [formErrors, setFormErrors] = useState({});
@@ -36,7 +50,7 @@ const ReservationPage = () => {
     setFormErrors(errors);
 
     if (Object.keys(errors).length === 0) {
-      navigate("/success");
+      navigate("/contact-details");
     } else {
       navigate("/error");
     }
@@ -47,6 +61,7 @@ const ReservationPage = () => {
       <h2 className="reservation-title">Reserve a Table</h2>
       {!isSubmitted ? (
         <form
+          ref={formRef}
           className="reservation-form"
           onSubmit={handleSubmit}
           aria-label="Reservation Form"
@@ -98,6 +113,39 @@ const ReservationPage = () => {
           {formErrors.guests && (
             <span className="error">{formErrors.guests}</span>
           )}
+
+          <label>Preferred Contact Method:</label>
+          <div className="contact-options">
+            <label
+              className={`radio-option ${
+                formData.contactMethod === "email" ? "selected" : ""
+              }`}
+            >
+              <input
+                type="radio"
+                name="contactMethod"
+                value="email"
+                checked={formData.contactMethod === "email"}
+                onChange={handleChange}
+              />
+              Email
+            </label>
+
+            <label
+              className={`radio-option ${
+                formData.contactMethod === "text" ? "selected" : ""
+              }`}
+            >
+              <input
+                type="radio"
+                name="contactMethod"
+                value="text"
+                checked={formData.contactMethod === "text"}
+                onChange={handleChange}
+              />
+              Text
+            </label>
+          </div>
 
           <button type="submit" className="reserve-btn">
             Book Table
