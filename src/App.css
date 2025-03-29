@@ -1,0 +1,66 @@
+.homepage {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  padding: 1rem;
+}
+
+.hero {
+  background-color: #f4f4f4;
+  text-align: center;
+  padding: 2rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  color: #4caf50;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.bio {
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+  text-align: center;
+}
+
+.bio h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.food-gallery {
+  text-align: center;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+figure {
+  width: 250px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+figure img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+}
+
+figcaption {
+  padding: 0.5rem;
+  font-weight: bold;
+  background-color: #f9f9f9;
+  color: #444;
+}
